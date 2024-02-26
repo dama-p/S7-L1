@@ -1,3 +1,5 @@
+// ESERCIZIO 1
+
 class User {
   constructor(firstName, lastName, age, location) {
     this.firstName = firstName;
@@ -22,8 +24,6 @@ const otherUser = new User("Matteo", "Rossi", 27, "Lazio");
 
 console.log(User.comparingAge(mainUser, otherUser));
 
-
-
 // ESERICIZIO 2
 
 const formNode = document.querySelector("form");
@@ -32,41 +32,45 @@ let ownerNameInput = document.getElementById("ownerName");
 let speciesInput = document.getElementById("species");
 let breedInput = document.getElementById("breed");
 
+const ul = document.querySelector("ul");
+
+
+
 const animals = [];
 
+createList = function(values) {
+    const li = document.createElement("li");
+    ul.appendChild(li);
+    li.innerText = (values);
+}
 
 class Pet {
-    constructor(petName, ownerName, species, breed) {
-        this.petName = petName;
-        this.ownerName = ownerName;
-        this.species = species;
-        this.breed = breed;
+  constructor(petName, ownerName, species, breed) {
+    this.petName = petName;
+    this.ownerName = ownerName;
+    this.species = species;
+    this.breed = breed;
+  }
 
-    }
-
-    sameOwner(anotherPet) {
-        return this.ownerName === anotherPet.owner.ownerName;
-    }
-
+ sameOwner(anotherPet) {
+    return this.ownerName === anotherPet.ownerName;
+  }
 }
 
 
 formNode.onsubmit = function (e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const newPet = new Pet(petNameInput.value, ownerNameInput.value, speciesInput.value, breedInput.value);
+  const newPet = new Pet(petNameInput.value, ownerNameInput.value, speciesInput.value, breedInput.value);
 
-    animals.push(newPet);
+  animals.push(newPet);
 
-    console.log(animals);
+  console.log(animals);
+  console.log(Pet.sameOwner(newPet));
 
-    formNode.reset();
+  createList(newPet.petName + " " + newPet.ownerName + " " + newPet.species  + " " +  newPet.breed);
 
+  formNode.reset();
 
-
-
-
-    console.log("form inviato")
-}
-
-
+  console.log("form inviato");
+};
